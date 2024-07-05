@@ -1,19 +1,18 @@
 package configx
 
 import (
-	"github.com/go-leo/project-layout/ddd-layout/pkg/actuatorx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/amqpx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/consulx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/databasex"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/elasticsearchx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/etcdx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/ginx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/grpcx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/kafkax"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/mongox"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/nacosx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/otelx"
-	"github.com/go-leo/project-layout/ddd-layout/pkg/redisx"
+	"github.com/go-leo/pkg/actuatorx"
+	"github.com/go-leo/pkg/amqpx"
+	"github.com/go-leo/pkg/consulx"
+	"github.com/go-leo/pkg/databasex"
+	"github.com/go-leo/pkg/elasticsearchx"
+	"github.com/go-leo/pkg/etcdx"
+	"github.com/go-leo/pkg/grpcx"
+	"github.com/go-leo/pkg/kafkax"
+	"github.com/go-leo/pkg/mongox"
+	"github.com/go-leo/pkg/nacosx"
+	"github.com/go-leo/pkg/otelx"
+	"github.com/go-leo/pkg/redisx"
 )
 
 var AppConf Configuration
@@ -29,7 +28,6 @@ type Configuration struct {
 	Env           *EnvConfig             `mapstructure:"env" json:"env" yaml:"env"`
 	Actuator      *actuatorx.Config      `mapstructure:"actuator" json:"actuator" yaml:"actuator"`
 	Nacos         nacosx.Configs         `mapstructure:"nacos" json:"nacos" yaml:"nacos"`
-	Gin           *ginx.Config           `mapstructure:"gin" json:"gin" yaml:"gin"`
 	GrpcServer    *grpcx.ServerConfig    `mapstructure:"grpc_server" json:"grpc_server" yaml:"grpc_server"`
 	GrpcClient    grpcx.ClientConfigs    `mapstructure:"grpc_client" json:"grpc_client" yaml:"grpc_client"`
 	Trace         *otelx.TraceConfig     `mapstructure:"trace" json:"trace" yaml:"trace"`
@@ -50,10 +48,6 @@ func Env() *EnvConfig {
 
 func Nacos() nacosx.Configs {
 	return AppConf.Nacos
-}
-
-func Gin() *ginx.Config {
-	return AppConf.Gin
 }
 
 func GrpcServer() *grpcx.ServerConfig {
